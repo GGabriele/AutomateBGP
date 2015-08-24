@@ -1,0 +1,13 @@
+configure terminal
+{% for interface in cisco_loopback %}
+interface {{interface.name}}
+ip address {{interface.address}} {{interface.mask}}
+{% endfor %}
+
+router bgp {{item.as}}
+{% for neighbor in cisco_neighbors %}
+neighbor {{neighbor.id}} remote-as {{neighbor.as}}
+{% endfor %}
+{% for loopback in cisco_loopback %}
+network {{loopback.network}} mask {{loopback.mask}}
+{% endfor %}

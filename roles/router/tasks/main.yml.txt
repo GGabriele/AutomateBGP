@@ -1,0 +1,12 @@
+---
+- name Generate configuration files
+  template src=router_cisco.j2 dest=homegabrieleDesktopBGP{{item.hostname}}.txt
+  with_items cisco_template
+
+- name Generate configuration files
+  template src=router_juniper.j2 dest=homegabrieleDesktopBGP{{item.hostname}}.txt
+  with_items juniper_template
+ 
+- name Generate configuration files
+  template src=router_vyatta.j2 dest=homegabrieleDesktopBGP{{item.hostname}}.txt
+  with_items vyatta_template

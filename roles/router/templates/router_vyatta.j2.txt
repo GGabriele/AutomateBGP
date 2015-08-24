@@ -1,0 +1,10 @@
+configure
+set protocols bgp {{item.as}}
+{% for neighbor in vyatta_neighbors %}
+set protocols bgp {{item.as}} neighbor {{neighbor.id}} remote-as {{neighbor.as}}
+{% endfor %}
+{% for loopback in vyatta_loopback %}
+set interface loopback lo address {{loopback.address}}
+set protocols bgp {{item.as}} network {{loopback.network}}
+{% endfor %}
+commit

@@ -1,0 +1,14 @@
+configure
+set protocols bgp group external-peers type external
+set routing-options autonomous-system {{item.as}}
+{% for neighbor in juniper_neighbors %}
+set protocols bgp group external-peers neighbor {{neighbor.id}} peer-as {{neighbor.as}}
+{% endfor %}
+{% for loopback in juniper_loopback %}
+set interface lo0 unit 0 family inet address {{loopback.address}}
+set policy-options prefix-list Loopback {{loopback.network}}
+{% endfor %}
+set policy-options policy-statement ebgp term 1 from prefix-list Loopback
+set policy-options policy-statement ebgp term 1 then accept
+set protocols bgp group external-peers export ebgp
+commit
