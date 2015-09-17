@@ -28,7 +28,7 @@ CISCOLOOPBACK = "   - { name: %s, address: %s, network: %s, mask: %s }\n"
 LOOPBACK = "   - { name: %s, address: %s, network: %s }\n"
 
 NEIGHBORS = "   - { id: %s, as: %s }\n"
-ISCONEIGHBORS = "\ncisco_neighbors:\n"
+CISCONEIGHBORS = "\ncisco_neighbors:\n"
 JUNIPERNEIGHBORS = "\njuniper_neighbors:\n"
 VYATTANEIGHBORS = "\nvyatta_neighbors:\n"
 
